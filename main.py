@@ -23,5 +23,9 @@ seed_request = inventory[(inventory.location == 'Brooklyn') & (inventory.product
 # 6: Add a column to inventory called in_stock which is True if quantity is greater than 0 and False if quantity equals 0.
 mylambda = lambda row: True if row['quantity'] > 0 else False
 inventory['in_stock'] = inventory.apply(mylambda, axis=1)
+
+# 7: Petal Power wants to know how valuable their current inventory is. Create a column called total_value that is equal to price multiplied by quantity.
+mylambda2 = lambda row: row['quantity'] * row['price']
+inventory['total_value'] = inventory.apply(mylambda2, axis=1)
 print(inventory.head(10))
 
