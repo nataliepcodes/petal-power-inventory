@@ -1,5 +1,5 @@
 """
-You’re the lead data analyst for a chain of gardening stores called Petal Power. 
+Project description: You’re the lead data analyst for a chain of gardening stores called Petal Power. 
 Help them analyze their inventory!
 """
 
@@ -27,5 +27,12 @@ inventory['in_stock'] = inventory.apply(mylambda, axis=1)
 # 7: Petal Power wants to know how valuable their current inventory is. Create a column called total_value that is equal to price multiplied by quantity.
 mylambda2 = lambda row: row['quantity'] * row['price']
 inventory['total_value'] = inventory.apply(mylambda2, axis=1)
-print(inventory.head(10))
+
+# 8: The Marketing department wants a complete description of each product for their catalog. combine_lambda is given below.
+combine_lambda = lambda row: \
+    '{} - {}'.format(row.product_type,
+                     row.product_description)
+
+# 9: Using combine_lambda, create a new column in inventory called full_description that has the complete description of each product.
+inventory['full_description'] = inventory.apply(combine_lambda, axis=1)
 
