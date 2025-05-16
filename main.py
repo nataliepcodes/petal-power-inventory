@@ -19,5 +19,9 @@ product_request = inventory['product_description']
 
 # 5: Another customer emails to ask what types of seeds are sold at the Brooklyn location. Select all rows where location is equal to Brooklyn and product_type is equal to seeds and save them to the variable seed_request
 seed_request = inventory[(inventory.location == 'Brooklyn') & (inventory.product_type == 'seeds')]
-print(seed_request)
+
+# 6: Add a column to inventory called in_stock which is True if quantity is greater than 0 and False if quantity equals 0.
+mylambda = lambda row: True if row['quantity'] > 0 else False
+inventory['in_stock'] = inventory.apply(mylambda, axis=1)
+print(inventory.head(10))
 
